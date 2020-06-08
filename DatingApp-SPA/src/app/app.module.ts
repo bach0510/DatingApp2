@@ -1,3 +1,4 @@
+import { MembersModule } from './members/members.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -18,11 +19,9 @@ import { AlertifyService } from './_services/alertify.service';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
-import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserService } from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
-import { tokenKey } from '@angular/core/src/view';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
@@ -34,6 +33,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AppRoutingModule } from './app-routing.module';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -65,7 +65,7 @@ export function tokenGetter() {
       PaginationModule.forRoot(),
       TabsModule.forRoot(),
       ButtonsModule.forRoot(),
-      RouterModule.forRoot(appRoutes),
+      // RouterModule.forRoot(appRoutin),
       NgxGalleryModule,
       FileUploadModule,
       JwtModule.forRoot({
@@ -74,7 +74,8 @@ export function tokenGetter() {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
-      })
+      }),
+      AppRoutingModule
    ],
    providers: [
       AuthService,
